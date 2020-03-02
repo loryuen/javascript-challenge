@@ -1,9 +1,11 @@
 // from data.js
 var tableData = data;
 
-// YOUR CODE HERE!
-// 1 - reference table body and save to variable
+// 1 - define variables
 var tbody = d3.select('tbody');
+var userInputDate = d3.select('#datetime');
+var filterButton = d3.select('#filter-btn');
+
 
 // 2 - loop through data, 
 //     use d3 to append tr for each data point
@@ -13,28 +15,22 @@ tableData.forEach( (UFOdata) => {
     var tr = tbody.append('tr');
     Object.entries(UFOdata).forEach( ([key, value]) => {
         var cell = tr.append('td');
-        cell.text(value);
+        dataDisplayed = cell.text(value);
     });
 });
 
 // 3 - Use a date form in your HTML document and write JavaScript code that will listen for events and search through the date/time column to find rows that match user input.
 
-// define variables
-var userInput = d3.select('#datetime');
-var filterOutput = d3.select('td');
-var filterButton = d3.select('#filter-btn');
 
-// define filter function
-// function filteredData(data) {
-//     return data.datetime === userInputValue;
-// };
 
 // connect with filter button 
 filterButton.on("click", () => {
-    userInputValue = userInput.property("value");
+    var userInputValue = userInputDate.property("value");
 
     console.log(userInputValue);
-    
+
+    // override or clear out current data displayed
+    document.getElementById('tableID').innerHTML='';
     // var filteredData = tableData.filter(data => data.datetime === userInputValue);
     function filteredData(data) {
         return data.datetime === userInputValue;
@@ -49,7 +45,8 @@ filterButton.on("click", () => {
             cell.text(value);
         });
     });
-
-   console.log(output);
+    
+    console.log(output);
 
 });
+
