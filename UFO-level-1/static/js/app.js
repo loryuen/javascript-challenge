@@ -28,25 +28,41 @@ filterButton.on("click", () => {
     var userInputValue = userInputDate.property("value");
 
     console.log(userInputValue);
+    var testinput = userInputDate.property("value");
+    console.log(testinput.length);
 
-    // override or clear out current data displayed
-    document.getElementById('tableID').innerHTML='';
-    // var filteredData = tableData.filter(data => data.datetime === userInputValue);
-    function filteredData(data) {
-        return data.datetime === userInputValue;
-    };
-
-    var output = tableData.filter(filteredData);
-
-    output.forEach( (UFOdatum) => {
-        var tr = tbody.append('tr');
-        Object.entries(UFOdatum).forEach( ([key, value]) => {
-            var cell = tr.append('td');
-            cell.text(value);
+    if (testinput.length===0) {
+        document.getElementById('tableID').innerHTML='';
+        tableData.forEach( (UFOdata) => {
+            var tr = tbody.append('tr');
+            Object.entries(UFOdata).forEach( ([key, value]) => {
+                var cell = tr.append('td');
+                dataDisplayed = cell.text(value);
+            });
         });
-    });
-    
-    console.log(output);
+        console.log(userInputDate);
+    }
+    else {
+        // override or clear out current data displayed
+        document.getElementById('tableID').innerHTML='';
+
+        // var filteredData = tableData.filter(data => data.datetime === userInputValue);
+        function filteredData(data) {
+            return data.datetime === userInputValue;
+        };
+
+        var output = tableData.filter(filteredData);
+
+        output.forEach( (UFOdatum) => {
+            var tr = tbody.append('tr');
+            Object.entries(UFOdatum).forEach( ([key, value]) => {
+                var cell = tr.append('td');
+                cell.text(value);
+            });
+        });
+        
+        console.log(output);
+    }
 
 });
 
