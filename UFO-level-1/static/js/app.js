@@ -53,18 +53,16 @@ filterButton.on("click", () => {
         // override or clear out current data displayed
         document.getElementById('tableID').innerHTML='';
 
-        // var filteredData = tableData.filter(data => data.datetime === userInputValue);
-        function filteredData(data) {
-            return data.shape === userInputShapeValue 
-            // && data.city === userInputCityValue 
-            // && data.state === userInputStateValue 
-            // && data.country === userInputCountryValue
-            // && data.shape === userInputShapeValue
-        };
-        console.log(userInputDateValue);
-        console.log(tableData.filter(filteredData))
-        var output = tableData.filter(filteredData);
+        //var output = [];
 
+        // if (filters[0].length != 0 && filters[1].length != 0) {
+            function filteredData(data) {
+                return data.datetime === userInputDateValue
+                && data.city === userInputCityValue;
+            } 
+            var output = tableData.filter(filteredData);
+            console.log(output); 
+        // };
         output.forEach( (UFOdatum) => {
             var tr = tbody.append('tr');
             Object.entries(UFOdatum).forEach( ([key, value]) => {
@@ -72,15 +70,37 @@ filterButton.on("click", () => {
                 cell.text(value);
             });
         });
-        
-        console.log(output);
     }
 });
         
 
 
 
+// else {
+//     // override or clear out current data displayed
+//     document.getElementById('tableID').innerHTML='';
 
+//     function filteredData(data) {
+//         return data.datetime === userInputDateValue 
+//         // && data.city === userInputCityValue 
+//         // && data.state === userInputStateValue 
+//         // && data.country === userInputCountryValue
+//         // && data.shape === userInputShapeValue
+//     };
+//     console.log(userInputDateValue);
+//     console.log(tableData.filter(filteredData))
+//     var output = tableData.filter(filteredData);
+
+//     output.forEach( (UFOdatum) => {
+//         var tr = tbody.append('tr');
+//         Object.entries(UFOdatum).forEach( ([key, value]) => {
+//             var cell = tr.append('td');
+//             cell.text(value);
+//         });
+//     });
+    
+//     console.log(output);
+// }
 
 
 
