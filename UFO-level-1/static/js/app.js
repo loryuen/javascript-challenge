@@ -25,13 +25,11 @@ tableData.forEach( (UFOdata) => {
 
 // connect with filter button 
 filterButton.on("click", () => {
-    var userInputValue = userInputDate.property("value");
+    var userInputDateValue = userInputDate.property("value");
+    console.log(userInputDateValue);
+    console.log(userInputDateValue.length);
 
-    console.log(userInputValue);
-    var testinput = userInputDate.property("value");
-    console.log(testinput.length);
-
-    if (testinput.length===0) {
+    if (userInputDateValue.length===0) {
         document.getElementById('tableID').innerHTML='';
         tableData.forEach( (UFOdata) => {
             var tr = tbody.append('tr');
@@ -48,7 +46,7 @@ filterButton.on("click", () => {
 
         // var filteredData = tableData.filter(data => data.datetime === userInputValue);
         function filteredData(data) {
-            return data.datetime === userInputValue;
+            return data.datetime === userInputDateValue;
         };
 
         var output = tableData.filter(filteredData);
