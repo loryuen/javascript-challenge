@@ -50,29 +50,54 @@ filterButton.on("click", () => {
         console.log(userInputDate);
     }
     else {
-        // override or clear out current data displayed
-        document.getElementById('tableID').innerHTML='';
+    // override or clear out current data displayed
+    document.getElementById('tableID').innerHTML='';
 
-        //var output = [];
+    function filteredData(data) {
+        return (data.datetime === userInputDateValue) 
+        || (data.city === userInputCityValue) 
+        || (data.state === userInputStateValue) 
+        || (data.country === userInputCountryValue)
+        || (data.shape === userInputShapeValue)
+    };
+    console.log(userInputDateValue);
+    console.log(tableData.filter(filteredData))
+    var output = tableData.filter(filteredData);
 
-        // if (filters[0].length != 0 && filters[1].length != 0) {
-            function filteredData(data) {
-                return data.datetime === userInputDateValue
-                && data.city === userInputCityValue;
-            } 
-            var output = tableData.filter(filteredData);
-            console.log(output); 
-        // };
-        output.forEach( (UFOdatum) => {
-            var tr = tbody.append('tr');
-            Object.entries(UFOdatum).forEach( ([key, value]) => {
-                var cell = tr.append('td');
-                cell.text(value);
-            });
+    output.forEach( (UFOdatum) => {
+        var tr = tbody.append('tr');
+        Object.entries(UFOdatum).forEach( ([key, value]) => {
+            var cell = tr.append('td');
+            cell.text(value);
         });
+    });
+    
+    console.log(output);
     }
 });
-        
+
+// else {
+//     // override or clear out current data displayed
+//     document.getElementById('tableID').innerHTML='';
+
+//     //var output = [];
+
+//     // if (filters[0].length != 0 && filters[1].length != 0) {
+//         function filteredData(data) {
+//             return data.datetime === userInputDateValue
+//             && data.city === userInputCityValue;
+//         } 
+//         var output = tableData.filter(filteredData);
+//         console.log(output); 
+//     // };
+//     output.forEach( (UFOdatum) => {
+//         var tr = tbody.append('tr');
+//         Object.entries(UFOdatum).forEach( ([key, value]) => {
+//             var cell = tr.append('td');
+//             cell.text(value);
+//         });
+//     });
+// }
 
 
 
@@ -106,7 +131,7 @@ filterButton.on("click", () => {
 
 ///////////////////////////////////////////////////////////////////
 
-// // from data.js
+// //from data.js
 // var tableData = data;
 
 // // 1 - define variables
@@ -128,7 +153,6 @@ filterButton.on("click", () => {
 // });
 
 // // 3 - Use a date form in your HTML document and write JavaScript code that will listen for events and search through the date/time column to find rows that match user input.
-
 
 
 // // connect with filter button 
